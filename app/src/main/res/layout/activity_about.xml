@@ -1,9 +1,73 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/test"
     tools:context="com.deepspring.tide.ui.activity.AboutActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <include layout="@layout/tool_bar"></include>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+
+            android:orientation="vertical">
+
+            <Button
+                android:layout_width="75dp"
+                android:layout_height="75dp"
+                android:layout_centerHorizontal="true"
+                android:background="@mipmap/ic_launcher_app" />
+
+            <TextView
+                android:layout_width="105dp"
+                android:layout_height="50dp"
+                android:textSize="30dp"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="90dp"
+                android:gravity="center"
+                android:text="潮汐"/>
+
+            <TextView
+                android:layout_width="150dp"
+                android:layout_height="45dp"
+                android:textSize="15dp"
+                android:textColor="@android:color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="128dp"
+                android:gravity="center"
+                android:text="一段美好的专注时光"/>
+
+            <Button
+                android:layout_width="90dp"
+                android:layout_height="35dp"
+                android:textSize="15dp"
+                android:textColor="@android:color/white"
+                android:background="@color/colorAccent"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="178dp"
+                android:gravity="center"
+                android:text="关注我们"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="650dp"
+            android:background="@color/colorAccent">
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+
+
+</ScrollView>
