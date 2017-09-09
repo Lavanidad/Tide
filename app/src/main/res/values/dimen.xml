@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="toolbar1">16.0dp</dimen>
+    <dimen name="toolbar2">15.0dp</dimen>
+</resources>
