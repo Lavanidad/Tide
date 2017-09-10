@@ -200,4 +200,5 @@
             fab:fab_label="@string/follow_us_wechat" />
         </com.github.clans.fab.FloatingActionMenu>
 
+
 </RelativeLayout>

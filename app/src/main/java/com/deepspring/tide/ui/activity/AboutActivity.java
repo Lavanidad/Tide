@@ -11,8 +11,8 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 /**
- * todo-list:优先级1：about页面其余几个布局，顶部渐变style，
- * todo-list:优先级2：scrollview按钮，字体，颜色
+ * todo-list:优先级1：cardview内容添加，顶部渐变style，
+ * todo-list:优先级2：scrollview按钮,全屏幕时的点击事件
  */
 public class AboutActivity extends AppCompatActivity {
 
@@ -27,8 +27,8 @@ public class AboutActivity extends AppCompatActivity {
         mToolbar.setTitle("关于");
         setSupportActionBar(mToolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
