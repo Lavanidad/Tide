@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 
 /**
  * todo-list:优先级1：about页面其余几个布局，顶部渐变style，
- * todo-list:优先级2：scrollview按钮，返回按钮没效果，字体，颜色
+ * todo-list:优先级2：scrollview按钮，字体，颜色
  */
 public class AboutActivity extends AppCompatActivity {
 
@@ -22,7 +22,7 @@ public class AboutActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_about);
+        setContentView(R.layout.activity_about_2);
         ButterKnife.bind(this);
         mToolbar.setTitle("关于");
         setSupportActionBar(mToolbar);
@@ -32,13 +32,11 @@ public class AboutActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-
         switch (item.getItemId()) {
-            case R.id.home:
+            case android.R.id.home:
                 finish();
                 break;
         }
-
-        return super.onOptionsItemSelected(item);
+        return true;
     }
 }

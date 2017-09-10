@@ -2,6 +2,7 @@ package com.deepspring.tide.ui.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -18,6 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        Log.d("id---------",item.getItemId()+"---"+R.id.menu_about);
         switch (item.getItemId()) {
             case R.id.menu_about:
                 Intent intent = new Intent(this,AboutActivity.class);

@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:fab="http://schemas.android.com/apk/res-auto">
+    <!-- scr里嵌套一个大层Lin  -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!-- 上半背景 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="400.0dp">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/about_bg"/>
+                <ImageView
+                    android:id="@+id/iv_icon"
+                    android:layout_width="65.0dp"
+                    android:layout_height="65.0dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="115.0dp"
+                    android:src="@mipmap/ic_launcher_app"/>
+                <TextView
+                    android:id="@+id/tv_appname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="24.0sp"
+                    android:textColor="#deffffff"
+                    android:text="@string/app_name"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/iv_icon"
+                    android:layout_marginTop="15.0dp"/>
+                <TextView
+                    android:id="@+id/tv_oneword"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14.0sp"
+                    android:textColor="#8bffffff"
+                    android:text="@string/one_word"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/tv_appname" />
+                <Button
+                    android:id="@+id/bt_chat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36.0dp"
+                    android:textSize="14.0sp"
+                    android:textColor="@android:color/white"
+                    android:text="@string/focus_us"
+                    android:layout_centerHorizontal="true"
+                    android:layout_below="@id/tv_oneword"
+                    android:layout_marginTop="22.0dp"
+                    android:background="@drawable/focus_button_bg"/>
+
+            </RelativeLayout>
+            <!-- 同层下使用cardview -->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="-36.0dp"
+                android:layout_marginBottom="10.0dp"
+                android:layout_marginEnd="8.0dp"
+                android:layout_marginStart="8.0dp">
+                <LinearLayout
+                    android:id="@+id/cv_about"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14.0sp"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginTop="13.0dp"
+                        android:layout_marginBottom="15.0dp"
+                        android:text="关于"
+                        android:layout_marginStart="16.0dp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10.0dp"
+                android:layout_marginEnd="8.0dp"
+                android:layout_marginStart="8.0dp">
+                <LinearLayout
+                    android:id="@+id/cv_create"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14.0sp"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginTop="13.0dp"
+                        android:layout_marginBottom="15.0dp"
+                        android:text="模仿者"
+                        android:layout_marginStart="16.0dp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10.0dp"
+                android:layout_marginEnd="8.0dp"
+                android:layout_marginStart="8.0dp">
+                <LinearLayout
+                    android:id="@+id/cv_chatus"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="14.0sp"
+                        android:textColor="@color/colorAccent"
+                        android:layout_marginTop="13.0dp"
+                        android:layout_marginBottom="15.0dp"
+                        android:text="联系我们"
+                        android:layout_marginStart="16.0dp"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+
+    <include
+        layout="@layout/tool_bar"></include>
+
+
+    <FrameLayout
+        android:id="@+id/fl_interceptor"
+        android:descendantFocusability="blocksDescendants"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <com.github.clans.fab.FloatingActionMenu
+        android:id="@+id/float_bt"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingRight="10.0dp"
+        android:paddingLeft="10.0dp"
+        android:layout_above="@+id/fl_interceptor"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        fab:menu_icon="@drawable/fab_add"
+        fab:menu_colorNormal="#ffda4336"
+        fab:menu_colorPressed="#ff888888"
+        fab:menu_colorRipple="#99ffffff"
+        fab:menu_backgroundColor="#60000000">
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_gravity="end|bottom|center"
+            android:id="@+id/about_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.0dip"
+            android:src="@drawable/share_white"
+            android:layout_marginEnd="8.0dip"
+            fab:fab_colorNormal="#ff03a9f4"
+            fab:fab_colorPressed="#ff03a9f4"
+            fab:fab_colorRipple="#ff03a9f4"
+            fab:fab_size="mini"
+            fab:fab_label="@string/share_to_friend" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_gravity="end|bottom|center"
+            android:id="@+id/about_weibo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.0dip"
+            android:src="@drawable/weibo_white"
+            android:layout_marginEnd="8.0dip"
+            fab:fab_colorNormal="#ffff5722"
+            fab:fab_colorPressed="#ffff5722"
+            fab:fab_colorRipple="#ffff5722"
+            fab:fab_size="mini"
+            fab:fab_label="@string/follow_us_weibo" />
+
+        <com.github.clans.fab.FloatingActionButton
+            android:layout_gravity="end|bottom|center"
+            android:id="@+id/about_wechat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8.0dip"
+            android:src="@drawable/weibo_white"
+            android:layout_marginEnd="8.0dip"
+            fab:fab_colorNormal="#ff4caf50"
+            fab:fab_colorPressed="#ff4caf50"
+            fab:fab_colorRipple="#ff4caf50"
+            fab:fab_size="mini"
+            fab:fab_label="@string/follow_us_wechat" />
+        </com.github.clans.fab.FloatingActionMenu>
+
+</RelativeLayout>

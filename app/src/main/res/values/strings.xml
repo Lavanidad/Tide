@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">潮汐</string>
+    <string name="one_word">一段美好的专注时光</string>
+    <string name="focus_us">关注我们</string>
+    <string name="share_to_friend">分享给朋友</string>
+    <string name="follow_us_weibo">在微博关注我们</string>
+    <string name="follow_us_wechat">在微信关注我们</string>
 </resources>
