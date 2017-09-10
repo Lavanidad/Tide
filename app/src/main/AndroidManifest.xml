@@ -21,7 +21,7 @@
             android:name=".ui.activity.MainActivity"
             android:theme="@style/TranslucentTheme" />
         <activity android:name=".ui.activity.AboutActivity"
-            android:theme="@style/AboutTheme"/>
+           android:theme="@style/AboutTheme"/>
     </application>
 
 </manifest>
