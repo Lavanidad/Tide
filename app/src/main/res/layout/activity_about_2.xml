@@ -2,11 +2,16 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/transparent"
     xmlns:fab="http://schemas.android.com/apk/res-auto">
-    <!-- scr里嵌套一个大层Lin  -->
-    <ScrollView
+
+    <com.deepspring.tide.ui.widget.MyScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:paddingTop="?attr/actionBarSize">
         <LinearLayout
             android:orientation="vertical"
             android:layout_width="match_parent"
@@ -352,12 +357,26 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
         </LinearLayout>
-    </ScrollView>
-
+    </com.deepspring.tide.ui.widget.MyScrollView>
 
     <!-- todo: test !!!-->
+    <!--<include-->
+        <!--layout="@layout/tool_bar"/>-->
+
+    <View
+        android:id="@+id/vw_about_status_bar_holder"
+        android:background="#00ff5a64"
+        android:layout_width="fill_parent"
+        android:layout_height="0.0dip" />
     <include
-        layout="@layout/tool_bar"/>
+        layout="@layout/about_tool_bar"/>
+    <View
+        android:id="@+id/toolbar_shadow"
+        android:background="@drawable/about_shadow"
+        android:layout_width="fill_parent"
+        android:layout_height="4.0dip"
+        android:layout_below="@+id/toolbar" />
+
 
     <FrameLayout
         android:id="@+id/fl_interceptor"
