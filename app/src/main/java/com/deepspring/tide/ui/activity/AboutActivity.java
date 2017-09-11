@@ -11,9 +11,9 @@ import com.deepspring.tide.ui.widget.MyScrollView;
 import com.deepspring.tide.ui.widget.TranslucentListener;
 
 /**
- * todo-list:优先级1：顶部透明没效果，一个奇怪的白条
+ * todo-list:优先级2：顶部透明没效果，自定义滑动效果微调
  * todo-list:优先级3：底部导航颜色、位置
- * todo-list:优先级4：全屏幕时的点击事件
+ * todo-list:优先级4：navBt全屏幕时的点击事件
  */
 public class AboutActivity extends AppCompatActivity implements TranslucentListener {
 
