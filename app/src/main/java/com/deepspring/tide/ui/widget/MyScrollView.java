@@ -3,6 +3,7 @@ package com.deepspring.tide.ui.widget;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
+
 /**
  * Created by Anonym on 2017/9/11.
  */
