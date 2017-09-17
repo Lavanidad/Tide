@@ -359,10 +359,6 @@
         </LinearLayout>
     </com.deepspring.tide.ui.widget.MyScrollView>
 
-    <!-- todo: test !!!-->
-    <!--<include-->
-        <!--layout="@layout/tool_bar"/>-->
-
     <View
         android:id="@+id/vw_about_status_bar_holder"
         android:background="#00ff5a64"

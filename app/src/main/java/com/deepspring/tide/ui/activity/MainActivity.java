@@ -14,14 +14,21 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
 
+
+    @Override
+    public int setLayout() {
+        return R.layout.activity_main;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
     }
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

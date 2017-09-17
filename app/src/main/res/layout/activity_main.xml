@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/test"
     android:orientation="vertical"
+    android:id="@+id/main_view"
     tools:context="com.deepspring.tide.ui.activity.MainActivity">
 
     <include layout="@layout/tool_bar"></include>
