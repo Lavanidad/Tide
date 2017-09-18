@@ -8,13 +8,13 @@ import android.view.ViewGroup;
 
 import com.deepspring.tide.R;
 
-public class WaveFragment extends Fragment {
+
+public class ClassicFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_wave, container, false);
-        return view;
+        return inflater.inflate(R.layout.fragment_classic, container, false);
     }
 
 }

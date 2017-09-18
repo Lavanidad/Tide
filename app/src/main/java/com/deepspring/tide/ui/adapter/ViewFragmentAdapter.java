@@ -14,9 +14,9 @@ public class ViewFragmentAdapter extends FragmentPagerAdapter {
 
     private List<Fragment> mFragments;
 
-    public ViewFragmentAdapter(FragmentManager fm) {
+    public ViewFragmentAdapter(FragmentManager fm, List<Fragment> fragments) {
         super(fm);
-
+        mFragments = fragments;
     }
 
 

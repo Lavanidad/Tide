@@ -6,8 +6,15 @@
     android:layout_height="match_parent"
     android:background="@drawable/test"
     android:orientation="vertical"
-    android:id="@+id/main_view"
     tools:context="com.deepspring.tide.ui.activity.MainActivity">
+
+    <com.deepspring.tide.ui.widget.MyViewPager
+        android:id="@+id/viewpager"
+        android:background="@android:color/transparent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    </com.deepspring.tide.ui.widget.MyViewPager>
 
     <include layout="@layout/tool_bar"></include>
 
