@@ -54,4 +54,5 @@ public class MyViewPager extends ViewPager {
         this.mBitmap = paramBitmap;
         this.mPaint.setFilterBitmap(true);
     }
+
 }

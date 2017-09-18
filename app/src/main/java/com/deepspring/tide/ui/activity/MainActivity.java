@@ -4,6 +4,7 @@ import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 
 import com.deepspring.tide.R;
@@ -40,6 +41,10 @@ public class MainActivity extends BaseActivity {
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         initFragments();
+
+        //TODO:OOM TEST
+        int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
+        Log.d("TAG", "Max memory is " + maxMemory + "KB");
     }
 
     private void initFragments() {
@@ -51,6 +56,8 @@ public class MainActivity extends BaseActivity {
         fragments.add(new ClassicFragment());
         ViewFragmentAdapter mAdapter = new ViewFragmentAdapter(getSupportFragmentManager(), fragments);
         mViewpager.setAdapter(mAdapter);
+
+        //TODO:大图片OOM问题
         mViewpager.setBackground(BitmapFactory.decodeResource(getResources(),R.drawable.test));
     }
 
