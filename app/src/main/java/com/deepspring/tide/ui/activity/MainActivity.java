@@ -22,6 +22,8 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
+
+//todo-list:优先级1：剪歌、大图片OOM
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
