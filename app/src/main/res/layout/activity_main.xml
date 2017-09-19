@@ -1,32 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/test"
     android:orientation="vertical"
     tools:context="com.deepspring.tide.ui.activity.MainActivity">
+
 
     <com.deepspring.tide.ui.widget.MyViewPager
         android:id="@+id/viewpager"
         android:background="@android:color/transparent"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-
     </com.deepspring.tide.ui.widget.MyViewPager>
+
+
+    <!-- todo: PLAY BUTTON TEST -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <Button
+            android:id="@+id/bt_play"
+            android:background="@color/colorAccent"
+            android:textSize="30sp"
+            android:layout_marginLeft="150dp"
+            android:layout_marginTop="400dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="播放"/>
+    </RelativeLayout>
 
     <include layout="@layout/tool_bar"></include>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        android:textSize="50dp"
-        android:textColor="#000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-</LinearLayout>
+</RelativeLayout>
