@@ -1,9 +1,9 @@
 package com.deepspring.tide.ui.activity;
 
 import android.content.ComponentName;
-import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.BitmapFactory;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
@@ -14,7 +14,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.deepspring.tide.R;
-import com.deepspring.tide.server.MusicService;
 import com.deepspring.tide.ui.adapter.ViewFragmentAdapter;
 import com.deepspring.tide.ui.fragment.ClassicFragment;
 import com.deepspring.tide.ui.fragment.DynamicFragment;
@@ -48,16 +47,20 @@ public class MainActivity extends BaseActivity {
     Button mBtPause;
 
     private List<Fragment> mFragments;
-    private MusicService mMusicService;
+    //private MusicService mMusicService;
+    //private TestService mTestService;
     private MyServiceConn conn;
+
+    private MediaPlayer mmm;
 
 
     private class MyServiceConn implements ServiceConnection {
 
         @Override
         public void onServiceConnected(ComponentName name, IBinder service) {
-            MusicService.MyBinder myBinder = (MusicService.MyBinder) service;
-            mMusicService = myBinder.getMusicServer();
+            //MusicService.MyBinder myBinder = (MusicService.MyBinder) service;
+            //mMusicService = myBinder.getMusicServer();
+
         }
 
         @Override
@@ -80,29 +83,30 @@ public class MainActivity extends BaseActivity {
 
         initFragments();
 
-        initMusic();
+        //test
+        mmm = MediaPlayer.create(this,R.raw.rain);
 
-        Intent intent = new Intent(this, MusicService.class);
-        startService(intent);
-        conn = new MyServiceConn();
-        bindService(intent, conn, BIND_AUTO_CREATE);
+
+
+       // Intent intent = new Intent(this, TestService.class);
+        //startService(intent);
+       // conn = new MyServiceConn();
+       // bindService(intent, conn, BIND_AUTO_CREATE);
 
         //TODO:OOM TEST
         int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         Log.d("TAG", "Max memory is " + maxMemory + "KB");
     }
 
-    private void initMusic() {
-
-    }
 
     @OnClick({R.id.bt_play, R.id.bt_pause})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_play:
-                getResources().openRawResource(R.raw.classic);
+                mmm.start();//TODO:test musci
                 break;
             case R.id.bt_pause:
+                mmm.stop();//test
                 break;
         }
     }
@@ -129,6 +133,6 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        unbindService(conn);
+        //unbindService(conn);
     }
 }

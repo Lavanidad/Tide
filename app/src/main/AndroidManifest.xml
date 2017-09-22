@@ -22,6 +22,8 @@
             android:theme="@style/TranslucentTheme" />
         <activity android:name=".ui.activity.AboutActivity"
            android:theme="@style/AboutTheme"/>
+        <service android:name=".server.TestService"
+            android:exported="true"/>
     </application>
 
 </manifest>
