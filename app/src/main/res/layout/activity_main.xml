@@ -30,6 +30,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="播放"/>
+        <Button
+            android:id="@+id/bt_pause"
+            android:background="@color/colorPrimary"
+            android:textSize="30sp"
+            android:layout_below="@+id/bt_play"
+            android:layout_marginLeft="150dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="暂停"/>
+
     </RelativeLayout>
 
     <include layout="@layout/tool_bar"></include>

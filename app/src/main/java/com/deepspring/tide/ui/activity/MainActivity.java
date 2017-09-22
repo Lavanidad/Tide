@@ -1,13 +1,20 @@
 package com.deepspring.tide.ui.activity;
 
+import android.content.ComponentName;
+import android.content.Intent;
+import android.content.ServiceConnection;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.IBinder;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
+import android.widget.Button;
 
 import com.deepspring.tide.R;
+import com.deepspring.tide.server.MusicService;
 import com.deepspring.tide.ui.adapter.ViewFragmentAdapter;
 import com.deepspring.tide.ui.fragment.ClassicFragment;
 import com.deepspring.tide.ui.fragment.DynamicFragment;
@@ -21,15 +28,43 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
-//todo-list:优先级1：剪歌、大图片OOM
+/**
+ * todo-list:优先级2：大图片OOM
+ * todo-list:优先级1：服务和音乐
+ */
+
 public class MainActivity extends BaseActivity {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
     @BindView(R.id.viewpager)
     MyViewPager mViewpager;
+    @BindView(R.id.bt_play)
+    Button mBtPlay;
+    @BindView(R.id.bt_pause)
+    Button mBtPause;
+
+    private List<Fragment> mFragments;
+    private MusicService mMusicService;
+    private MyServiceConn conn;
+
+
+    private class MyServiceConn implements ServiceConnection {
+
+        @Override
+        public void onServiceConnected(ComponentName name, IBinder service) {
+            MusicService.MyBinder myBinder = (MusicService.MyBinder) service;
+            mMusicService = myBinder.getMusicServer();
+        }
+
+        @Override
+        public void onServiceDisconnected(ComponentName name) {
+
+        }
+    }
 
     @Override
     public int setLayout() {
@@ -42,30 +77,58 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
+
         initFragments();
+
+        initMusic();
+
+        Intent intent = new Intent(this, MusicService.class);
+        startService(intent);
+        conn = new MyServiceConn();
+        bindService(intent, conn, BIND_AUTO_CREATE);
 
         //TODO:OOM TEST
         int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         Log.d("TAG", "Max memory is " + maxMemory + "KB");
     }
 
-    private void initFragments() {
-        List<Fragment> fragments = new ArrayList<Fragment>();
-        fragments.add(new DynamicFragment());
-        fragments.add(new RainFragment());
-        fragments.add(new ForestFragment());
-        fragments.add(new WaveFragment());
-        fragments.add(new ClassicFragment());
-        ViewFragmentAdapter mAdapter = new ViewFragmentAdapter(getSupportFragmentManager(), fragments);
-        mViewpager.setAdapter(mAdapter);
+    private void initMusic() {
 
+    }
+
+    @OnClick({R.id.bt_play, R.id.bt_pause})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.bt_play:
+                getResources().openRawResource(R.raw.classic);
+                break;
+            case R.id.bt_pause:
+                break;
+        }
+    }
+
+    private void initFragments() {
+        mFragments = new ArrayList<Fragment>();
+        mFragments.add(new DynamicFragment());
+        mFragments.add(new RainFragment());
+        mFragments.add(new ForestFragment());
+        mFragments.add(new WaveFragment());
+        mFragments.add(new ClassicFragment());
+        ViewFragmentAdapter mAdapter = new ViewFragmentAdapter(getSupportFragmentManager(), mFragments);
+        mViewpager.setAdapter(mAdapter);
         //TODO:大图片OOM问题
-        mViewpager.setBackground(BitmapFactory.decodeResource(getResources(),R.drawable.test));
+        mViewpager.setBackground(BitmapFactory.decodeResource(getResources(), R.drawable.test));
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
         return true;
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        unbindService(conn);
     }
 }
