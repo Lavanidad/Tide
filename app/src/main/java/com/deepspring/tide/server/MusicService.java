@@ -7,6 +7,8 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.deepspring.tide.ui.activity.MusicActivity;
+
 import java.io.IOException;
 
 /**
@@ -19,11 +21,14 @@ public class MusicService extends Service {
 
     public static MediaPlayer mediaPlayer = new MediaPlayer();
 
+    MusicActivity music = new MusicActivity();
+
     public class MyBinder extends Binder {
         public MusicService getMusicServer() {
             return MusicService.this;
         }
     }
+
 
 
     /**
