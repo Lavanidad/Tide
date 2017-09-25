@@ -3,10 +3,12 @@ package com.deepspring.tide.server;
 import android.app.Service;
 import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
+import com.deepspring.tide.R;
 import com.deepspring.tide.ui.activity.MusicActivity;
 
 import java.io.IOException;
@@ -21,6 +23,19 @@ public class MusicService extends Service {
 
     public static MediaPlayer mediaPlayer = new MediaPlayer();
 
+    public String[] mPath = {
+         "android.resource://" + getPackageName() + "/" + R.raw.rain,
+         "android.resource://" + getPackageName() + "/" + R.raw.forest,
+         "android.resource://" + getPackageName() + "/" + R.raw.wave,
+         "android.resource://" + getPackageName() + "/" + R.raw.classic
+    };
+
+    public Uri uri0 = Uri.parse(mPath[0]);
+    public Uri uri1 = Uri.parse(mPath[1]);
+    public Uri uri2 = Uri.parse(mPath[2]);
+    public Uri uri3 = Uri.parse(mPath[3]);
+
+
     MusicActivity music = new MusicActivity();
 
     public class MyBinder extends Binder {
@@ -33,12 +48,13 @@ public class MusicService extends Service {
 
     /**
      * UI中 继续和开始 都直接使用play
-     * @param path
+     * @param
      */
-    public void play(String path) {
+    public void play(Uri uri) {
         mediaPlayer.reset();
         try {
-            mediaPlayer.setDataSource(path);
+            //mediaPlayer.setDataSource(uri);
+            mediaPlayer.start();
             mediaPlayer.prepare();
         } catch (IOException e) {
             e.printStackTrace();

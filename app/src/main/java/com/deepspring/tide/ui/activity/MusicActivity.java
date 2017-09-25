@@ -1,17 +1,18 @@
 package com.deepspring.tide.ui.activity;
 
-import com.deepspring.tide.R;
+import android.support.v7.app.AppCompatActivity;
 
 /**
  * Created by Anonym on 2017/9/24.
  */
 
-public class MusicActivity {
+public class MusicActivity extends AppCompatActivity{
 
-    public static final int BGM_RAIN = R.raw.rain;
-    public static final int BGM_FOREST = R.raw.forest;
-    public static final int BGM_WAVE = R.raw.wave;
-    public static final int BGM_CLASSIC = R.raw.classic;
+
+    String path = "android.resource://" + getPackageName() + "/raw/xxxx";
+
+
+
 
 //    private Context mContext;
 //
