@@ -22,7 +22,7 @@
             android:theme="@style/TranslucentTheme" />
         <activity android:name=".ui.activity.AboutActivity"
            android:theme="@style/AboutTheme"/>
-        <service android:name=".server.TestService"
+        <service android:name=".server.MusicService"
             android:exported="true"/>
     </application>
 

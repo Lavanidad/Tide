@@ -4,11 +4,10 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.BitmapFactory;
-import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
@@ -36,9 +35,10 @@ import butterknife.OnClick;
 /**
  * todo-list:优先级2：大图片OOM
  * todo-list:优先级1：服务和音乐
+ * todo-list:问题记录：在Main的onPageSelected可以得到position值，但是赋值后为NULL
  */
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -49,30 +49,31 @@ public class MainActivity extends BaseActivity {
     @BindView(R.id.bt_pause)
     Button mBtPause;
 
+    public int mPosition = 2;
+
+    private ViewFragmentAdapter mAdapter;
     private List<Fragment> mFragments;
     private MusicService mMusicService;
-    //private TestService mTestService;
-    private MyServiceConn conn;
-
-    private MediaPlayer mmm;
-
-    public Uri uri = Uri.parse("android.resource://" + getPackageName() + "/" + R.raw.forest);
 
 
-    private class MyServiceConn implements ServiceConnection {
-
+    private ServiceConnection conn = new ServiceConnection() {
         @Override
-        public void onServiceConnected(ComponentName name, IBinder service) {
-            MusicService.MyBinder myBinder = (MusicService.MyBinder) service;
-            mMusicService = myBinder.getMusicServer();
+        public void onServiceConnected(ComponentName componentName, IBinder iBinder) {
+            mMusicService = ((MusicService.MyBinder)iBinder).getMusicService();
         }
 
         @Override
-        public void onServiceDisconnected(ComponentName name) {
-
+        public void onServiceDisconnected(ComponentName componentName) {
+            mMusicService = null;
         }
+    };
+
+    private void bindServiceConnection() {
+        Intent intent = new Intent(this, MusicService.class);
+        intent.putExtra("position",mPosition);
+        startService(intent);
+        bindService(intent, conn, this.BIND_AUTO_CREATE);
     }
-
     @Override
     public int setLayout() {
         return R.layout.activity_main;
@@ -84,36 +85,20 @@ public class MainActivity extends BaseActivity {
         ButterKnife.bind(this);
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
-
         initFragments();
-
         //test
-        //mmm = MediaPlayer.create(this,R.raw.rain);
+        mMusicService = new MusicService();
+        bindServiceConnection();
 
 
-
-        Intent intent = new Intent(this, MusicService.class);
-        startService(intent);
-        conn = new MyServiceConn();
-        bindService(intent, conn, BIND_AUTO_CREATE);
+//        Intent intent = new Intent(this, MusicService.class);
+//        startService(intent);
+//        conn = new MyServiceConn();
+//        bindService(intent, conn, BIND_AUTO_CREATE);
 
         //TODO:OOM TEST
         int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         Log.d("TAG", "Max memory is " + maxMemory + "KB");
-    }
-
-
-    @OnClick({R.id.bt_play, R.id.bt_pause})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.bt_play:
-                mMusicService.play(uri);
-                //mmm.start();//TODO:test musci
-                break;
-            case R.id.bt_pause:
-                //mmm.stop();//test
-                break;
-        }
     }
 
     private void initFragments() {
@@ -123,11 +108,43 @@ public class MainActivity extends BaseActivity {
         mFragments.add(new ForestFragment());
         mFragments.add(new WaveFragment());
         mFragments.add(new ClassicFragment());
-        ViewFragmentAdapter mAdapter = new ViewFragmentAdapter(getSupportFragmentManager(), mFragments);
+        mAdapter = new ViewFragmentAdapter(getSupportFragmentManager(), mFragments);
         mViewpager.setAdapter(mAdapter);
+        //mViewpager.setCurrentItem(0);
+        mViewpager.addOnPageChangeListener(this);
         //TODO:大图片OOM问题
         mViewpager.setBackground(BitmapFactory.decodeResource(getResources(), R.drawable.test));
     }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        this.mPosition = position;
+        Log.v("site",""+position);
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+    }
+
+
+
+    @OnClick({R.id.bt_play, R.id.bt_pause})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.bt_play:
+                mMusicService.play();
+                break;
+            case R.id.bt_pause:
+                mMusicService.pause();
+                break;
+        }
+    }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

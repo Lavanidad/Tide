@@ -8,10 +8,7 @@ import android.os.Binder;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
 
-import com.deepspring.tide.R;
-import com.deepspring.tide.ui.activity.MusicActivity;
-
-import java.io.IOException;
+import com.deepspring.tide.ui.activity.MainActivity;
 
 /**
  * Created by Anonym on 2017/9/22.
@@ -19,64 +16,24 @@ import java.io.IOException;
 
 public class MusicService extends Service {
 
+    public MainActivity mActivity;
+    public int position = 1;
+
     public final Binder mBinder = new MyBinder();
 
-    public static MediaPlayer mediaPlayer = new MediaPlayer();
+    public final Uri uri0 = null;
+    public final Uri uri1 = Uri.parse("android.resource://com.deepspring.tide/raw/rain");
+    public final Uri uri2 = Uri.parse("android.resource://com.deepspring.tide/raw/forest");
+    public final Uri uri3 = Uri.parse("android.resource://com.deepspring.tide/raw/wave");
+    public final Uri uri4 = Uri.parse("android.resource://com.deepspring.tide/raw/classic");
 
-    public String[] mPath = {
-         "android.resource://" + getPackageName() + "/" + R.raw.rain,
-         "android.resource://" + getPackageName() + "/" + R.raw.forest,
-         "android.resource://" + getPackageName() + "/" + R.raw.wave,
-         "android.resource://" + getPackageName() + "/" + R.raw.classic
-    };
-
-    public Uri uri0 = Uri.parse(mPath[0]);
-    public Uri uri1 = Uri.parse(mPath[1]);
-    public Uri uri2 = Uri.parse(mPath[2]);
-    public Uri uri3 = Uri.parse(mPath[3]);
-
-
-    MusicActivity music = new MusicActivity();
+    public MediaPlayer mp = new MediaPlayer();
 
     public class MyBinder extends Binder {
-        public MusicService getMusicServer() {
+        public MusicService getMusicService() {
             return MusicService.this;
         }
     }
-
-
-
-    /**
-     * UI中 继续和开始 都直接使用play
-     * @param
-     */
-    public void play(Uri uri) {
-        mediaPlayer.reset();
-        try {
-            //mediaPlayer.setDataSource(uri);
-            mediaPlayer.start();
-            mediaPlayer.prepare();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        mediaPlayer.setOnPreparedListener(new MediaPlayer.OnPreparedListener() {
-            @Override
-            public void onPrepared(MediaPlayer mp) {
-                mediaPlayer.start();
-            }
-        });
-    }
-
-    /**
-     * 暂停
-     */
-    public void pause() {
-        if(mediaPlayer != null) {
-            mediaPlayer.pause();
-        }
-
-    }
-
 
     @Nullable
     @Override
@@ -84,5 +41,45 @@ public class MusicService extends Service {
         return mBinder;
     }
 
+    @Override
+    public int onStartCommand(Intent intent,int flags, int startId) {
+        //position = intent.getIntExtra("positon",mActivity.mPosition); NULL
+        position = intent.getIntExtra("positon",position);//使用的是service的positon
+        return super.onStartCommand(intent, flags, startId);
+    }
 
+    /**
+     * UI中 继续和开始 都直接使用play
+     * @param
+     */
+    public void play() {
+        switch (position) {
+            case 0:
+                break;
+            case 1:
+                mp = MediaPlayer.create(this,uri1);
+                mp.start();
+                break;
+            case 2:
+                mp = MediaPlayer.create(this,uri2);
+                mp.start();
+                break;
+            case 3:
+                mp = MediaPlayer.create(this,uri3);
+                mp.start();
+                break;
+            case 4:
+                mp = MediaPlayer.create(this,uri4);
+                mp.start();
+                break;
+            default:
+        }
+    }
+
+    /**
+     * 暂停、放弃
+     */
+    public void pause() {
+        mp.stop();
+    }
 }
