@@ -17,7 +17,6 @@ import com.deepspring.tide.ui.activity.MainActivity;
 public class MusicService extends Service {
 
     public MainActivity mActivity;
-    public int position = 1;
 
     public final Binder mBinder = new MyBinder();
 
@@ -41,19 +40,12 @@ public class MusicService extends Service {
         return mBinder;
     }
 
-    @Override
-    public int onStartCommand(Intent intent,int flags, int startId) {
-        //position = intent.getIntExtra("positon",mActivity.mPosition); NULL
-        position = intent.getIntExtra("positon",position);//使用的是service的positon
-        return super.onStartCommand(intent, flags, startId);
-    }
-
     /**
      * UI中 继续和开始 都直接使用play
      * @param
      */
     public void play() {
-        switch (position) {
+        switch (mActivity.mPosition) {
             case 0:
                 break;
             case 1:

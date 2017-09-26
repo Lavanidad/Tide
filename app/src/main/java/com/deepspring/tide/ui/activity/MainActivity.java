@@ -33,9 +33,9 @@ import butterknife.OnClick;
 
 
 /**
- * todo-list:优先级2：大图片OOM
- * todo-list:优先级1：服务和音乐
- * todo-list:问题记录：在Main的onPageSelected可以得到position值，但是赋值后为NULL
+ * todo-list:优先级1：后台播放时的通知
+ * todo-list:优先级3：大图片OOM
+ * todo-list:优先级2：服务第一次启动&&切屏过多时短暂失效的bug
  */
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
@@ -49,7 +49,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @BindView(R.id.bt_pause)
     Button mBtPause;
 
-    public int mPosition = 2;
+    public static int mPosition;
 
     private ViewFragmentAdapter mAdapter;
     private List<Fragment> mFragments;
@@ -70,7 +70,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     private void bindServiceConnection() {
         Intent intent = new Intent(this, MusicService.class);
-        intent.putExtra("position",mPosition);
         startService(intent);
         bindService(intent, conn, this.BIND_AUTO_CREATE);
     }
@@ -110,7 +109,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mFragments.add(new ClassicFragment());
         mAdapter = new ViewFragmentAdapter(getSupportFragmentManager(), mFragments);
         mViewpager.setAdapter(mAdapter);
-        //mViewpager.setCurrentItem(0);
         mViewpager.addOnPageChangeListener(this);
         //TODO:大图片OOM问题
         mViewpager.setBackground(BitmapFactory.decodeResource(getResources(), R.drawable.test));
@@ -124,13 +122,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public void onPageSelected(int position) {
         this.mPosition = position;
-        Log.v("site",""+position);
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
     }
-
 
 
     @OnClick({R.id.bt_play, R.id.bt_pause})
