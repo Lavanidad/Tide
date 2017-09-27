@@ -111,7 +111,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mViewpager.setAdapter(mAdapter);
         mViewpager.addOnPageChangeListener(this);
         //TODO:大图片OOM问题
-        mViewpager.setBackground(BitmapFactory.decodeResource(getResources(), R.drawable.test));
+        mViewpager.setBackground(BitmapFactory.decodeResource(getResources(), R.drawable.a3));
     }
 
     @Override

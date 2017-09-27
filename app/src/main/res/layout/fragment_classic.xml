@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#A58B4513"
+    android:background="#19FF4500"
     tools:context="com.deepspring.tide.ui.fragment.ClassicFragment">
 
 
