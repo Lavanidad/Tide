@@ -16,7 +16,7 @@ import com.deepspring.tide.ui.activity.MainActivity;
 
 public class MusicService extends Service {
 
-    public MainActivity mActivity;
+    public MainActivity mActivity = new MainActivity();
 
     public final Binder mBinder = new MyBinder();
 
