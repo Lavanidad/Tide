@@ -85,15 +85,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
         initFragments();
-        //test
         mMusicService = new MusicService();
         bindServiceConnection();
-
-
-//        Intent intent = new Intent(this, MusicService.class);
-//        startService(intent);
-//        conn = new MyServiceConn();
-//        bindService(intent, conn, BIND_AUTO_CREATE);
 
         //TODO:OOM TEST
         int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
