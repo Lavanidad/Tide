@@ -55,6 +55,7 @@ public class AboutActivity extends AppCompatActivity implements TranslucentListe
 
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("关于");
+        mToolbar.setAlpha(1f);
         setSupportActionBar(mToolbar);
 
         ActionBar mActionBar = getSupportActionBar();
@@ -79,8 +80,10 @@ public class AboutActivity extends AppCompatActivity implements TranslucentListe
     }
 
     @Override
-    public void onTranlucent(float alpha) {
+    public void onTranlucent(float alpha,int color, int textColor) {
         mToolbar.setAlpha(1-alpha);
+        mToolbar.setBackgroundColor(color);
+        mToolbar.setTitleTextColor(textColor);
     }
 
 }

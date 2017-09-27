@@ -1,6 +1,7 @@
 package com.deepspring.tide.ui.widget;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.util.AttributeSet;
 import android.widget.ScrollView;
 
@@ -27,7 +28,10 @@ public class MyScrollView extends ScrollView  {
             int scrollY = getScrollY();
             int screen_height = getContext().getResources().getDisplayMetrics().heightPixels;
             if (scrollY <= screen_height / 3f) {//0~1f,而透明度应该是1~0f
-                listener.onTranlucent(1 - scrollY / (screen_height / 3f));//alpha=滑出去的高度/(screen_height/3f)
+                listener.onTranlucent( 1 - scrollY / (screen_height / 3f), Color.WHITE,Color.BLACK);//alpha=滑出去的高度/(screen_height/3f)
+            }
+            if(scrollY == 0) {
+                listener.onTranlucent(0f,Color.WHITE,Color.WHITE);
             }
         }
     }

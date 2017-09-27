@@ -10,5 +10,5 @@ public interface TranslucentListener {
      *
      * @param alpha 0~1透明度
      */
-    void onTranlucent(float alpha);
+    void onTranlucent(float alpha,int color,int textColor);
 }
