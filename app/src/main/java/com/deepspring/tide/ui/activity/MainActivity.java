@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
@@ -48,6 +49,10 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     Button mBtPlay;
     @BindView(R.id.bt_pause)
     Button mBtPause;
+    @BindView(R.id.bt_continute)
+    Button mBtContinute;
+    @BindView(R.id.bt_giveup)
+    Button mBtGiveup;
 
     public static int mPosition;
 
@@ -84,12 +89,64 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         ButterKnife.bind(this);
         mToolbar.setTitle("");
         setSupportActionBar(mToolbar);
+        initBtn();
         initFragments();
         mMusicService = new MusicService();
         bindServiceConnection();
         //TODO:OOM TEST
         int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         Log.d("TAG", "Max memory is " + maxMemory + "KB");
+    }
+
+    private void initBtn() {
+        mBtPlay.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_BUTTON_PRESS)
+                {
+                    v.setBackgroundResource(R.drawable.shape_play_pressed);
+                }else if (event.getAction() == MotionEvent.ACTION_BUTTON_RELEASE){
+                    v.setBackgroundResource(R.drawable.shape_play);
+                }
+                return false;
+            }
+        });
+        mBtPause.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_BUTTON_PRESS)
+                {
+                    v.setBackgroundResource(R.drawable.shape_pause_pressed);
+                }else if (event.getAction() == MotionEvent.ACTION_BUTTON_RELEASE){
+                    v.setBackgroundResource(R.drawable.shape_pause);
+                }
+                return false;
+            }
+        });
+        mBtContinute.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_BUTTON_PRESS)
+                {
+                    v.setBackgroundResource(R.drawable.shape_continute_pressed);
+                }else if (event.getAction() == MotionEvent.ACTION_BUTTON_RELEASE){
+                    v.setBackgroundResource(R.drawable.shape_continute);
+                }
+                return false;
+            }
+        });
+        mBtGiveup.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if(event.getAction() == MotionEvent.ACTION_BUTTON_PRESS)
+                {
+                    v.setBackgroundResource(R.drawable.shape_pause_pressed);
+                }else if (event.getAction() == MotionEvent.ACTION_BUTTON_RELEASE){
+                    v.setBackgroundResource(R.drawable.shape_pause);
+                }
+                return false;
+            }
+        });
     }
 
     private void initFragments() {
@@ -121,18 +178,36 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     }
 
 
-    @OnClick({R.id.bt_play, R.id.bt_pause})
+    @OnClick({R.id.bt_play, R.id.bt_pause, R.id.bt_continute, R.id.bt_giveup})
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_play:
                 mMusicService.play();
                 mBtPlay.setVisibility(View.GONE);
                 mBtPause.setVisibility(View.VISIBLE);
+                mBtContinute.setVisibility(View.GONE);
+                mBtGiveup.setVisibility(View.GONE);
                 break;
             case R.id.bt_pause:
                 mMusicService.pause();
+                mBtPlay.setVisibility(View.GONE);
+                mBtPause.setVisibility(View.GONE);
+                mBtContinute.setVisibility(View.VISIBLE);
+                mBtGiveup.setVisibility(View.VISIBLE);
+                break;
+            case R.id.bt_continute:
+                mMusicService.play();
+                mBtPlay.setVisibility(View.GONE);
+                mBtPause.setVisibility(View.VISIBLE);
+                mBtContinute.setVisibility(View.GONE);
+                mBtGiveup.setVisibility(View.GONE);
+                break;
+            case R.id.bt_giveup:
+                mMusicService.pause();
                 mBtPlay.setVisibility(View.VISIBLE);
                 mBtPause.setVisibility(View.GONE);
+                mBtContinute.setVisibility(View.GONE);
+                mBtGiveup.setVisibility(View.GONE);
                 break;
         }
     }

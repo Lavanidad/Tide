@@ -44,6 +44,34 @@
             android:visibility="gone"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/bt_continute"
+            android:background="@drawable/shape_continute"
+            android:textSize="20sp"
+            android:layout_marginTop="520dp"
+            android:layout_marginLeft="80dp"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:text="继续"
+            android:visibility="gone"/>
+
+        <Button
+            android:id="@+id/bt_giveup"
+            android:background="@drawable/shape_pause"
+            android:textSize="20sp"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="520dp"
+            android:layout_marginLeft="30dp"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:text="放弃"
+            android:visibility="gone"/>
+
+    </LinearLayout>
 
     <include layout="@layout/tool_bar"></include>
 
