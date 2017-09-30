@@ -17,30 +17,33 @@
 
 
     <!-- todo: PLAY BUTTON TEST -->
-    <RelativeLayout
+    <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <Button
             android:id="@+id/bt_play"
-            android:background="@color/colorAccent"
-            android:textSize="30sp"
-            android:layout_marginLeft="150dp"
-            android:layout_marginTop="400dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="播放"/>
+            android:background="@drawable/shape_play"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="520dp"
+            android:layout_width="150dp"
+            android:layout_height="55dp"
+            android:text="开始专注"/>
+
         <Button
             android:id="@+id/bt_pause"
-            android:background="@color/colorPrimary"
-            android:textSize="30sp"
-            android:layout_below="@+id/bt_play"
-            android:layout_marginLeft="150dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="暂停"/>
+            android:background="@drawable/shape_pause"
+            android:textSize="20sp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="520dp"
+            android:layout_width="100dp"
+            android:layout_height="55dp"
+            android:text="暂停"
+            android:visibility="gone"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <include layout="@layout/tool_bar"></include>
 

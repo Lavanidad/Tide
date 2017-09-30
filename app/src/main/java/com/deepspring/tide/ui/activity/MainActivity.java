@@ -87,7 +87,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         initFragments();
         mMusicService = new MusicService();
         bindServiceConnection();
-
         //TODO:OOM TEST
         int maxMemory = (int) (Runtime.getRuntime().maxMemory() / 1024);
         Log.d("TAG", "Max memory is " + maxMemory + "KB");
@@ -127,9 +126,13 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         switch (view.getId()) {
             case R.id.bt_play:
                 mMusicService.play();
+                mBtPlay.setVisibility(View.GONE);
+                mBtPause.setVisibility(View.VISIBLE);
                 break;
             case R.id.bt_pause:
                 mMusicService.pause();
+                mBtPlay.setVisibility(View.VISIBLE);
+                mBtPause.setVisibility(View.GONE);
                 break;
         }
     }
