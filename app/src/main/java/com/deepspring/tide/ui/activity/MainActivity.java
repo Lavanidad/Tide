@@ -13,6 +13,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.animation.Animation;
 import android.widget.Button;
 
 import com.deepspring.tide.R;
@@ -34,9 +35,9 @@ import butterknife.OnClick;
 
 
 /**
- * todo-list:优先级1：后台播放时的通知
+ * todo-list:优先级1：后台播放时的通知 && 按钮动画
  * todo-list:优先级3：大图片OOM
- * todo-list:优先级2：服务第一次启动&&切屏过多时短暂失效的bug
+ * todo-list:优先级2：奇怪的BUG:服务第一次启动&&切屏过多时短暂失效的bug
  */
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
@@ -59,6 +60,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private ViewFragmentAdapter mAdapter;
     private List<Fragment> mFragments;
     private MusicService mMusicService;
+    private Animation mAnimation;
 
 
     private ServiceConnection conn = new ServiceConnection() {
@@ -111,6 +113,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 return false;
             }
         });
+
         mBtPause.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -182,6 +185,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_play:
+                //mAnimation = AnimationUtils.loadAnimation(this,R.anim.play_bt);
+                //mBtPlay.startAnimation(mAnimation);
                 mMusicService.play();
                 mBtPlay.setVisibility(View.GONE);
                 mBtPause.setVisibility(View.VISIBLE);
@@ -189,6 +194,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtGiveup.setVisibility(View.GONE);
                 break;
             case R.id.bt_pause:
+                //mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
+                //mBtPause.startAnimation(mAnimation);
                 mMusicService.pause();
                 mBtPlay.setVisibility(View.GONE);
                 mBtPause.setVisibility(View.GONE);
@@ -196,6 +203,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtGiveup.setVisibility(View.VISIBLE);
                 break;
             case R.id.bt_continute:
+                //mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
+                //mBtContinute.startAnimation(mAnimation);
                 mMusicService.play();
                 mBtPlay.setVisibility(View.GONE);
                 mBtPause.setVisibility(View.VISIBLE);
@@ -203,6 +212,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtGiveup.setVisibility(View.GONE);
                 break;
             case R.id.bt_giveup:
+                //mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_right);
+                //mBtGiveup.startAnimation(mAnimation);
                 mMusicService.pause();
                 mBtPlay.setVisibility(View.VISIBLE);
                 mBtPause.setVisibility(View.GONE);
