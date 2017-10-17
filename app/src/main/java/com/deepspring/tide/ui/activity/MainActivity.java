@@ -99,8 +99,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         initBtn();
         initFragments();
         Typeface mTypeFace = Typeface.createFromAsset(getAssets(),
-                //"fonts/fontawesome-font-v4.6.0.1.ttf"
-                //"fonts/google-material-font-v2.2.0.1.original.ttf"
                 "MFKeSong-Regular.ttf");
         mDayilText.setTypeface(mTypeFace);
         mMusicService = new MusicService();
