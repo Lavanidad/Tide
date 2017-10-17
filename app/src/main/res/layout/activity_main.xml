@@ -28,7 +28,8 @@
             android:layout_marginTop="520dp"
             android:layout_width="150dp"
             android:layout_height="55dp"
-            android:text="开始专注"/>
+            android:text="开始专注"
+            android:soundEffectsEnabled="false"/>
 
         <Button
             android:id="@+id/bt_pause"
@@ -39,7 +40,8 @@
             android:layout_width="100dp"
             android:layout_height="55dp"
             android:text="暂停"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:soundEffectsEnabled="false"/>
 
     </LinearLayout>
     <LinearLayout
@@ -55,7 +57,8 @@
             android:layout_width="100dp"
             android:layout_height="55dp"
             android:text="继续"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:soundEffectsEnabled="false"/>
 
         <Button
             android:id="@+id/bt_giveup"
@@ -67,7 +70,8 @@
             android:layout_width="100dp"
             android:layout_height="55dp"
             android:text="放弃"
-            android:visibility="gone"/>
+            android:visibility="gone"
+            android:soundEffectsEnabled="false"/>
 
     </LinearLayout>
     <LinearLayout
@@ -79,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="37.0dp"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="604.5dp"
+            android:layout_marginTop="608.5dp"
             android:textColor="#A5FFFFFF"
             android:textSize="18.8dp"
             android:text="白日依山尽,黄河入海流"/>
