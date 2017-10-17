@@ -4,6 +4,7 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.BitmapFactory;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
@@ -15,6 +16,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.deepspring.tide.R;
 import com.deepspring.tide.server.MusicService;
@@ -36,8 +38,8 @@ import butterknife.OnClick;
 
 /**
  * todo-list:优先级1：后台播放时的通知 && 按钮动画
- * todo-list:优先级3：大图片OOM
- * todo-list:优先级2：奇怪的BUG:服务第一次启动&&切屏过多时短暂失效的bug
+ * todo-list:优先级2：大图片OOM
+ * todo-list:优先级3：奇怪的BUG:服务第一次启动&&切屏过多时短暂失效的bug
  */
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
@@ -54,6 +56,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     Button mBtContinute;
     @BindView(R.id.bt_giveup)
     Button mBtGiveup;
+    @BindView(R.id.daily_text)
+    TextView mDayilText;
 
     public static int mPosition;
 
@@ -61,6 +65,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private List<Fragment> mFragments;
     private MusicService mMusicService;
     private Animation mAnimation;
+
 
 
     private ServiceConnection conn = new ServiceConnection() {
@@ -93,6 +98,11 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         setSupportActionBar(mToolbar);
         initBtn();
         initFragments();
+        Typeface mTypeFace = Typeface.createFromAsset(getAssets(),
+                //"fonts/fontawesome-font-v4.6.0.1.ttf"
+                //"fonts/google-material-font-v2.2.0.1.original.ttf"
+                "MFKeSong-Regular.ttf");
+        mDayilText.setTypeface(mTypeFace);
         mMusicService = new MusicService();
         bindServiceConnection();
         //TODO:OOM TEST
@@ -185,8 +195,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_play:
-                //mAnimation = AnimationUtils.loadAnimation(this,R.anim.play_bt);
-                //mBtPlay.startAnimation(mAnimation);
+//                mAnimation = AnimationUtils.loadAnimation(this,R.anim.play_bt);
+//                mBtPlay.startAnimation(mAnimation);
                 mMusicService.play();
                 mBtPlay.setVisibility(View.GONE);
                 mBtPause.setVisibility(View.VISIBLE);
@@ -203,8 +213,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtGiveup.setVisibility(View.VISIBLE);
                 break;
             case R.id.bt_continute:
-                //mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
-                //mBtContinute.startAnimation(mAnimation);
+//                mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
+//                mBtContinute.startAnimation(mAnimation);
                 mMusicService.play();
                 mBtPlay.setVisibility(View.GONE);
                 mBtPause.setVisibility(View.VISIBLE);
@@ -212,8 +222,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtGiveup.setVisibility(View.GONE);
                 break;
             case R.id.bt_giveup:
-                //mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_right);
-                //mBtGiveup.startAnimation(mAnimation);
+//                mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_right);
+//                mBtGiveup.startAnimation(mAnimation);
                 mMusicService.pause();
                 mBtPlay.setVisibility(View.VISIBLE);
                 mBtPause.setVisibility(View.GONE);

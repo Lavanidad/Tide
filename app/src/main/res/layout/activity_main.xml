@@ -15,8 +15,6 @@
         android:layout_height="wrap_content">
     </com.deepspring.tide.ui.widget.MyViewPager>
 
-
-    <!-- todo: PLAY BUTTON TEST -->
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -72,6 +70,21 @@
             android:visibility="gone"/>
 
     </LinearLayout>
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/daily_text"
+            android:layout_width="wrap_content"
+            android:layout_height="37.0dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="604.5dp"
+            android:textColor="#A5FFFFFF"
+            android:textSize="18.8dp"
+            android:text="白日依山尽,黄河入海流"/>
+    </LinearLayout>
+
 
     <include layout="@layout/tool_bar"></include>
 

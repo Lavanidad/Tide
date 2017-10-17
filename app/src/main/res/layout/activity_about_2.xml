@@ -362,14 +362,14 @@
     <View
         android:id="@+id/vw_about_status_bar_holder"
         android:background="#00ff5a64"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="0.0dip" />
     <include
         layout="@layout/about_tool_bar"/>
     <View
         android:id="@+id/toolbar_shadow"
         android:background="@drawable/about_shadow"
-        android:layout_width="fill_parent"
+        android:layout_width="match_parent"
         android:layout_height="4.0dip"
         android:layout_below="@+id/toolbar" />
 
