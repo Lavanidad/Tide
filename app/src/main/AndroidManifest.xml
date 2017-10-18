@@ -19,7 +19,8 @@
         </activity>
         <activity
             android:name=".ui.activity.MainActivity"
-            android:theme="@style/TranslucentTheme" />
+            android:theme="@style/TranslucentTheme"
+            android:launchMode="singleTask"/>
         <activity android:name=".ui.activity.AboutActivity"
            android:theme="@style/AboutTheme"/>
         <service android:name=".server.MusicService"

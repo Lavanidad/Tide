@@ -1,6 +1,10 @@
 package com.deepspring.tide.ui.activity;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
 import android.graphics.BitmapFactory;
@@ -8,6 +12,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -42,7 +47,7 @@ import butterknife.OnClick;
  * todo-list:优先级3：奇怪的BUG:服务第一次启动&&切屏过多时短暂失效的bug
  */
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener{
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener,NoticeImp{
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -60,6 +65,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     TextView mDayilText;
 
     public static int mPosition;
+    private static final int NO_f = 0x1;
 
     private ViewFragmentAdapter mAdapter;
     private List<Fragment> mFragments;
@@ -67,6 +73,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private Animation mAnimation;
     private String[] mSentenceArrays;
     private String daily_sentece = null;
+    private NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
 
     private ServiceConnection conn = new ServiceConnection() {
@@ -251,5 +258,39 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     protected void onDestroy() {
         super.onDestroy();
         unbindService(conn);
+    }
+
+    @Override
+    public void NoticePlay() {
+        Intent intent = new Intent(this,MainActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pi);
+        builder.setSmallIcon(R.drawable.ic_notify_icon_red);
+        builder.setContentTitle("潮汐");
+        builder.setContentText("正在专注");
+        builder.setSmallIcon(R.drawable.ic_notify_icon_red);
+        Notification n = builder.build();
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(NO_f, n);
+    }
+
+    @Override
+    public void NoticePause() {
+        builder.setSmallIcon(R.drawable.ic_notify_icon_red);
+        builder.setContentTitle("潮汐");
+        builder.setContentText("专注已暂停");
+        builder.setSmallIcon(R.drawable.ic_notify_icon_red);
+        Notification n = builder.build();
+        //通过NotificationCompat.Builder.build()来获得notification对象自己
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        //然后调用NotificationManager.notify()向系统转交
+        manager.notify(NO_f, n);
+    }
+
+    @Override
+    public void NoticeCancel() {
+        Notification n = builder.build();
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.cancelAll();
     }
 }
