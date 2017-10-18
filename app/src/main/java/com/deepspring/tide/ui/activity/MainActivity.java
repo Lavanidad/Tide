@@ -65,7 +65,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private List<Fragment> mFragments;
     private MusicService mMusicService;
     private Animation mAnimation;
-
+    private String[] mSentenceArrays;
+    private String daily_sentece = null;
 
 
     private ServiceConnection conn = new ServiceConnection() {
@@ -98,9 +99,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         setSupportActionBar(mToolbar);
         initBtn();
         initFragments();
-        Typeface mTypeFace = Typeface.createFromAsset(getAssets(),
-                "MFKeSong-Regular.ttf");
-        mDayilText.setTypeface(mTypeFace);
+        initTextView();
         mMusicService = new MusicService();
         bindServiceConnection();
         //TODO:OOM TEST
@@ -172,6 +171,16 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mViewpager.addOnPageChangeListener(this);
         //TODO:大图片OOM问题
         mViewpager.setBackground(BitmapFactory.decodeResource(getResources(), R.drawable.a3));
+    }
+
+    private void initTextView(){
+        Typeface mTypeFace = Typeface.createFromAsset(getAssets(),
+                "MFKeSong-Regular.ttf");
+        mDayilText.setTypeface(mTypeFace);
+        mSentenceArrays = this.getResources().getStringArray(R.array.daily_sentence);
+        int id = (int)(Math.random()*(mSentenceArrays.length-1));
+        daily_sentece = mSentenceArrays[id];
+        mDayilText.setText(daily_sentece);
     }
 
     @Override

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">潮汐</string>
+    <string name="app_name">仿潮汐</string>
     <string name="one_word">一段美好的专注时光</string>
     <string name="focus_us">关注我们</string>
     <string name="share_to_friend">分享给朋友</string>
@@ -7,4 +7,19 @@
     <string name="follow_us_wechat">在微信关注我们</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string-array name="daily_sentence">
+        <item>For you, a thousand times over.</item>
+        <item>白昼之光 岂知夜色之深</item>
+        <item>北风其凉 雨雪其雾 惠而好我 携手同行</item>
+        <item>Later, respectively, wander and suffer sorrow.</item>
+        <item>不要习惯了黑暗就为黑暗辩护</item>
+        <item>放过他人为慈 放过自己为悲</item>
+        <item>心若是牢笼 处处为牢笼</item>
+        <item>束雪归砚匣 载梦入花心</item>
+        <item>倚天照海花无数 流水高山心自知</item>
+        <item>Stay hungry, stay foolish.</item>
+    </string-array>
+
+
 </resources>

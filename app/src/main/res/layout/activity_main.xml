@@ -85,8 +85,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="608.5dp"
             android:textColor="#A5FFFFFF"
-            android:textSize="18.8dp"
-            android:text="白日依山尽,黄河入海流"/>
+            android:textSize="17.8dp"
+            android:text=""/>
     </LinearLayout>
 
 
