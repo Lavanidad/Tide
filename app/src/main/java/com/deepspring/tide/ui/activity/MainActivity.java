@@ -43,9 +43,9 @@ import butterknife.OnClick;
 
 /**
  * todo-list:优先级1：自定义circle
- * todo-list:优先级2：通知的倒计时逻辑 && 按钮动画
- * todo-list:优先级3：大图片OOM
- * todo-list:优先级100：奇怪的BUG:服务第一次启动&&切屏过多时短暂失效的bug
+ * todo-list:优先级2：通知的倒计时逻辑
+ * todo-list:优先级3：大图片OOM && 按钮动画
+ * todo-list:BUG：服务生命周期的问题 描述：当AC销毁后，服务继续运行
  */
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener,NoticeImp{
@@ -229,6 +229,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtGiveup.setVisibility(View.VISIBLE);
                 break;
             case R.id.bt_continute:
+                NoticePlay();
 //                mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
 //                mBtContinute.startAnimation(mAnimation);
                 mMusicService.play();
