@@ -42,9 +42,10 @@ import butterknife.OnClick;
 
 
 /**
- * todo-list:优先级1：后台播放时的通知 && 按钮动画
- * todo-list:优先级2：大图片OOM
- * todo-list:优先级3：奇怪的BUG:服务第一次启动&&切屏过多时短暂失效的bug
+ * todo-list:优先级1：自定义circle
+ * todo-list:优先级2：通知的倒计时逻辑 && 按钮动画
+ * todo-list:优先级3：大图片OOM
+ * todo-list:优先级100：奇怪的BUG:服务第一次启动&&切屏过多时短暂失效的bug
  */
 
 public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener,NoticeImp{
@@ -204,7 +205,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void onPageScrollStateChanged(int state) {
     }
 
-
     @OnClick({R.id.bt_play, R.id.bt_pause, R.id.bt_continute, R.id.bt_giveup})
     public void onViewClicked(View view) {
         switch (view.getId()) {
@@ -249,7 +249,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 break;
         }
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
