@@ -211,6 +211,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             case R.id.bt_play:
 //                mAnimation = AnimationUtils.loadAnimation(this,R.anim.play_bt);
 //                mBtPlay.startAnimation(mAnimation);
+                NoticePlay();
                 mMusicService.play();
                 mBtPlay.setVisibility(View.GONE);
                 mBtPause.setVisibility(View.VISIBLE);
@@ -218,6 +219,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtGiveup.setVisibility(View.GONE);
                 break;
             case R.id.bt_pause:
+                NoticePause();
                 //mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
                 //mBtPause.startAnimation(mAnimation);
                 mMusicService.pause();
@@ -236,6 +238,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtGiveup.setVisibility(View.GONE);
                 break;
             case R.id.bt_giveup:
+                NoticeCancel();
 //                mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_right);
 //                mBtGiveup.startAnimation(mAnimation);
                 mMusicService.pause();
@@ -258,6 +261,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     protected void onDestroy() {
         super.onDestroy();
         unbindService(conn);
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.cancelAll();
     }
 
     @Override
@@ -281,15 +286,12 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         builder.setContentText("专注已暂停");
         builder.setSmallIcon(R.drawable.ic_notify_icon_red);
         Notification n = builder.build();
-        //通过NotificationCompat.Builder.build()来获得notification对象自己
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        //然后调用NotificationManager.notify()向系统转交
         manager.notify(NO_f, n);
     }
 
     @Override
     public void NoticeCancel() {
-        Notification n = builder.build();
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancelAll();
     }
