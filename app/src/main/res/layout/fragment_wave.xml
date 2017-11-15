@@ -7,10 +7,4 @@
     tools:context="com.deepspring.tide.ui.fragment.WaveFragment">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="50dp"
-        android:text="海浪" />
-
 </LinearLayout>

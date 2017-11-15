@@ -7,10 +7,5 @@
     tools:context="com.deepspring.tide.ui.fragment.ForestFragment">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="50dp"
-        android:text="森林" />
 
 </LinearLayout>

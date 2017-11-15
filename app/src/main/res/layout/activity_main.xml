@@ -15,10 +15,56 @@
         android:layout_height="wrap_content">
     </com.deepspring.tide.ui.widget.MyViewPager>
 
+    <!-- todo test -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <com.deepspring.tide.ui.widget.MyCircleProgress
+            android:id="@+id/circleProgress"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:layout_marginTop="110dp"
+            android:layout_marginStart="59dp"
+            android:paddingStart="20dp"
+            android:paddingTop="20dp"
+            />
+        <TextView
+            android:id="@+id/mid_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="52sp"
+            android:layout_marginTop="220dp"
+            android:layout_marginStart="150dp"
+            android:text="欢迎"
+            />
+
+        <com.deepspring.tide.ui.widget.MyNumberPicker
+            android:id="@+id/num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="167.0dp"
+            android:layout_marginStart="170dp"
+            android:visibility="gone">
+        </com.deepspring.tide.ui.widget.MyNumberPicker>
+
+        <com.deepspring.tide.ui.widget.MyTimeCountDown
+            android:id="@+id/timer"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:textSize="40sp"
+            android:gravity="center"
+            android:layout_marginTop="220dp"
+            android:layout_marginStart="150dp"
+            android:textColor="#CCd3d6da"
+            android:visibility="gone" />
+
+    </RelativeLayout>
+
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
 
         <Button
             android:id="@+id/bt_play"

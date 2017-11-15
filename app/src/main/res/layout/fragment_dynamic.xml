@@ -6,11 +6,5 @@
     tools:context="com.deepspring.tide.ui.fragment.DynamicFragment">
 
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@android:color/transparent"
-        android:text="@string/hello_blank_fragment"
-        android:textSize="50dp" />
 
 </LinearLayout>

@@ -19,15 +19,15 @@ import com.deepspring.tide.R;
 public class MyCircleProgress extends ProgressBar {
 
     //定义一些属性常量
-    private static final int PROGRESS_DEFAULT_COLOR = 0xFFd3d6da;//默认圆(边框)的颜色
-    private static final int PROGRESS_REACHED_COLOR = 0XFFFC00D1;//进度条的颜色
-    private static final int PROGRESS_REACHED_HEIGHT = 2;//进度条的高度
-    private static final int PROGRESS_DEFAULT_HEIGHT = 2;//默认圆的高度
-    private static final int PROGRESS_RADIUS = 100;//圆的半径
+    private static final int PROGRESS_DEFAULT_COLOR = 0xCCd3d6da;//默认圆(边框)的颜色
+    private static final int PROGRESS_REACHED_COLOR = 0XFFFFFFFF;//进度条的颜色
+    private static final int PROGRESS_REACHED_HEIGHT = 3;//进度条的高度
+    private static final int PROGRESS_DEFAULT_HEIGHT = 3;//默认圆的高度
+    private static final int PROGRESS_RADIUS = 125;//圆的半径
 
     //文字
-    private static final int TEXT_COLOR = Color.parseColor("#F76E6B");
-    private static final int TEXT_SIZE = 40;
+    private static final int TEXT_COLOR = Color.parseColor("#CCd3d6da");
+    private static final int TEXT_SIZE = 48;
 
     //View的当前状态，默认为未开始
     private Status mStatus = Status.End;
