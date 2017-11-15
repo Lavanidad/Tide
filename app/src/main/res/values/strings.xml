@@ -6,7 +6,13 @@
     <string name="follow_us_weibo">在微博关注我们</string>
     <string name="follow_us_wechat">在微信关注我们</string>
 
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+   <string-array name="midText">
+       <item>欢迎</item>
+       <item>雨天</item>
+       <item>森林</item>
+       <item>海浪</item>
+       <item>壁炉</item>
+   </string-array>
 
     <string-array name="daily_sentence">
         <item>For you, a thousand times over.</item>

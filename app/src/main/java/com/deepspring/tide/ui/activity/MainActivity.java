@@ -89,6 +89,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private MusicService mMusicService;
     private Animation mAnimation;
     private String[] mSentenceArrays;
+    private String[] mMidTextArrays;
     private String daily_sentece = null;
     private NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
     private int progress;
@@ -271,6 +272,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         int id = (int) (Math.random() * (mSentenceArrays.length - 1));
         daily_sentece = mSentenceArrays[id];
         mDayilText.setText(daily_sentece);
+
     }
 
     @Override
@@ -281,10 +283,28 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     @Override
     public void onPageSelected(int position) {
         this.mPosition = position;
+        mMidTextArrays = this.getResources().getStringArray(R.array.midText);
+        switch (mPosition){
+            case 0:
+                break;
+            case 1:
+                mMidText.setText(mMidTextArrays[1]);
+                break;
+            case 2:
+                mMidText.setText(mMidTextArrays[2]);
+                break;
+            case 3:
+                mMidText.setText(mMidTextArrays[3]);
+                break;
+            case 4:
+                mMidText.setText(mMidTextArrays[4]);
+                break;
+        }
     }
 
     @Override
     public void onPageScrollStateChanged(int state) {
+
     }
 
     @OnClick({R.id.bt_play, R.id.bt_pause, R.id.bt_continute, R.id.bt_giveup})

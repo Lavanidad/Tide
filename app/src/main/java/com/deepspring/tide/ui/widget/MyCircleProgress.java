@@ -50,8 +50,6 @@ public class MyCircleProgress extends ProgressBar {
     //默认文字的大小
     private int textSize = sp2px(TEXT_SIZE);
 
-    private String textDesc = "欢迎";
-
     public MyCircleProgress(Context context) {
         this(context,null);
     }
