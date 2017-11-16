@@ -93,7 +93,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private String daily_sentece = null;
     private NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
     private int progress;
-    private final String[] times = {"00","05","10","15","20","25","30",
+    private final String[] times = {"05","10","15","20","25","30",
             "35","45","50","55","60"};
     private float countTime;
     private int is_SELECTED = 0;//0没点击 1点击
@@ -180,6 +180,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mNumPick.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);//中间不可点击
         mNumPick.setMaxValue(times.length-1);
         mNumPick.setWrapSelectorWheel(false);
+        mTimer.initTime(300);//TODO
+        t1 = 3;
         mNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
@@ -321,7 +323,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtGiveup.setVisibility(View.GONE);
                 //todo new add test
                 mCircleProgress.setStatus(MyCircleProgress.Status.Starting);
-                mCircleProgress.setClickable(false);
+                mCircleProgress.setClickable(true);
                 Message message = Message.obtain();
                 message.what = PROGRESS_CIRCLE_STARTING;
                 handler.sendMessage(message);
@@ -396,7 +398,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mNumPick.setVisibility(View.GONE);
                 mMidText.setVisibility(View.VISIBLE);
                 mTimer.stop();
-                mTimer.initTime(0);
+                mTimer.initTime(300);
+                t1 = 3;
                 break;
         }
     }
