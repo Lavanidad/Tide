@@ -39,6 +39,7 @@ import com.deepspring.tide.ui.widget.MyCircleProgress;
 import com.deepspring.tide.ui.widget.MyNumberPicker;
 import com.deepspring.tide.ui.widget.MyTimeCountDown;
 import com.deepspring.tide.ui.widget.MyViewPager;
+import com.deepspring.tide.ui.widget.OnTimeCompleteListener;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +56,7 @@ import butterknife.OnClick;
  * todo-list:BUG：服务生命周期的问题 描述：当AC销毁后，服务继续运行
  */
 
-public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, NoticeImp {
+public class MainActivity extends BaseActivity implements ViewPager.OnPageChangeListener, NoticeImp, OnTimeCompleteListener {
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -71,10 +72,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     Button mBtGiveup;
     @BindView(R.id.daily_text)
     TextView mDayilText;
-
-
-    public static int mPosition;
-    private static final int NO_f = 0x1;
     @BindView(R.id.circleProgress)
     MyCircleProgress mCircleProgress;
     @BindView(R.id.mid_text)
@@ -91,16 +88,20 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     private String[] mSentenceArrays;
     private String[] mMidTextArrays;
     private String daily_sentece = null;
-    private NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
-    private int progress;
+
+    public static int mPosition;
+    private static final int NO_f = 0x1;
+    public static final int PROGRESS_CIRCLE_STARTING = 0x110;
     private final String[] times = {"05","10","15","20","25","30",
             "35","45","50","55","60"};
+    private int progress;
     private float countTime;
     private int is_SELECTED = 0;//0没点击 1点击
     private float t1;
     private float t2;
     private boolean isPause = false;
-    public static final int PROGRESS_CIRCLE_STARTING = 0x110;
+
+    private NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
     //progressbar
     private Handler handler = new Handler(){
@@ -157,17 +158,16 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         initFragments();
         initTextView();
         initNumberPicker();
+        mTimer.setOnTimeCompleteListener(this);
         mCircleProgress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(is_SELECTED == 0){
                     mMidText.setVisibility(View.GONE);
                     mTimer.setVisibility(View.GONE);
                     mNumPick.setVisibility(View.VISIBLE);
-                    is_SELECTED = 1;
-                }
             }
         });
+        Log.e("this1","test");
         mMusicService = new MusicService();
         bindServiceConnection();
         //TODO:OOM TEST
@@ -175,16 +175,18 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         Log.d("TAG", "Max memory is " + maxMemory + "KB");
     }
 
+    private int x=0;
     private void initNumberPicker() {
         mNumPick.setDisplayedValues(times);
         mNumPick.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);//中间不可点击
         mNumPick.setMaxValue(times.length-1);
         mNumPick.setWrapSelectorWheel(false);
         mTimer.initTime(300);//TODO
-        t1 = 3;
+        t1 = 300/100;
         mNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+                Log.d("old",oldVal+"--new"+newVal);
                 mNumPick.setValue(newVal);
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -192,8 +194,14 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                         mMidText.setVisibility(View.VISIBLE);
                         mNumPick.setVisibility(View.GONE);
                         is_SELECTED = 0;
+                        int x =1;
+                        Log.e("x1",""+x);
+                        mBtPlay.setClickable(true);
                     }
                 },1500);
+                is_SELECTED = 0;
+                mBtPlay.setClickable(false);
+                Log.e("x",""+x+"---"+is_SELECTED);
                 countTime = Integer.parseInt(times[newVal]);
                 t1 = ((60*countTime)/100);
                 t2 = 60*countTime;
@@ -313,6 +321,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_play:
+                Log.e("xplay",""+x+"---"+is_SELECTED);
 //                mAnimation = AnimationUtils.loadAnimation(this,R.anim.play_bt);
 //                mBtPlay.startAnimation(mAnimation);
                 NoticePlay();
@@ -321,7 +330,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtPause.setVisibility(View.VISIBLE);
                 mBtContinute.setVisibility(View.GONE);
                 mBtGiveup.setVisibility(View.GONE);
-                //todo new add test
                 mCircleProgress.setStatus(MyCircleProgress.Status.Starting);
                 mCircleProgress.setClickable(true);
                 Message message = Message.obtain();
@@ -338,6 +346,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 break;
             case R.id.bt_pause:
                 NoticePause();
+                Log.e("xpa",""+x+"---"+is_SELECTED);
                 //mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
                 //mBtPause.startAnimation(mAnimation);
                 mMusicService.pause();
@@ -345,11 +354,9 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtPause.setVisibility(View.GONE);
                 mBtContinute.setVisibility(View.VISIBLE);
                 mBtGiveup.setVisibility(View.VISIBLE);
-                //todo new add test
                 mCircleProgress.setClickable(false);
-                if(mCircleProgress.getStatus() == MyCircleProgress.Status.Starting) {//如果是开始状态
+                if(mCircleProgress.getStatus() == MyCircleProgress.Status.Starting) {
                     mCircleProgress.setStatus(MyCircleProgress.Status.End);
-                    //注意，当我们暂停时，同时还要移除消息，不然的话进度不会被停止
                     handler.removeMessages(PROGRESS_CIRCLE_STARTING);
                     mTimer.TimePause();
                     isPause = true;
@@ -359,6 +366,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 }
                 break;
             case R.id.bt_continute:
+                Log.e("xc",""+x+"---"+is_SELECTED);
                 NoticePlay();
 //                mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
 //                mBtContinute.startAnimation(mAnimation);
@@ -367,7 +375,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtPause.setVisibility(View.VISIBLE);
                 mBtContinute.setVisibility(View.GONE);
                 mBtGiveup.setVisibility(View.GONE);
-                //todo new add test 继续和开始播放一样
                 mCircleProgress.setStatus(MyCircleProgress.Status.Starting);
                 mCircleProgress.setClickable(false);
                 Message message1 = Message.obtain();
@@ -383,6 +390,8 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 }
                 break;
             case R.id.bt_giveup:
+
+                Log.e("xg",""+x+"---"+is_SELECTED);
                 NoticeCancel();
 //                mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_right);
 //                mBtGiveup.startAnimation(mAnimation);
@@ -391,7 +400,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mBtPause.setVisibility(View.GONE);
                 mBtContinute.setVisibility(View.GONE);
                 mBtGiveup.setVisibility(View.GONE);
-                //TODO TEST NEW ADD
                 mCircleProgress.setProgress(0);
                 mCircleProgress.setClickable(true);
                 mTimer.setVisibility(View.GONE);
@@ -399,6 +407,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mMidText.setVisibility(View.VISIBLE);
                 mTimer.stop();
                 mTimer.initTime(300);
+                is_SELECTED = 0;
                 t1 = 3;
                 break;
         }
@@ -447,5 +456,33 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void NoticeCancel() {
         NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancelAll();
+    }
+
+    @Override
+    public void onTimeComplete() {
+        Intent intent = new Intent(this, MainActivity.class);
+        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        builder.setContentIntent(pi);
+        builder.setSmallIcon(R.drawable.ic_notify_icon_red);
+        builder.setContentTitle("潮汐");
+        builder.setContentText("专注结束");
+        builder.setSmallIcon(R.drawable.ic_notify_icon_red);
+        Notification n = builder.build();
+        NotificationManager manager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        manager.notify(NO_f, n);
+
+        mMusicService.pause();
+        mBtPlay.setVisibility(View.VISIBLE);
+        mBtPause.setVisibility(View.GONE);
+        mBtContinute.setVisibility(View.GONE);
+        mBtGiveup.setVisibility(View.GONE);
+        mCircleProgress.setProgress(0);
+        mCircleProgress.setClickable(true);
+        mTimer.setVisibility(View.GONE);
+        mNumPick.setVisibility(View.GONE);
+        mMidText.setVisibility(View.VISIBLE);
+        mTimer.stop();
+        mTimer.initTime(300);
+        t1 = 3;
     }
 }

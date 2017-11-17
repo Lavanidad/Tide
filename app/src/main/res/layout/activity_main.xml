@@ -15,18 +15,17 @@
         android:layout_height="wrap_content">
     </com.deepspring.tide.ui.widget.MyViewPager>
 
-    <!-- todo test -->
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
         <com.deepspring.tide.ui.widget.MyCircleProgress
             android:id="@+id/circleProgress"
-            android:layout_width="300dp"
-            android:layout_height="300dp"
-            android:layout_marginTop="110dp"
-            android:layout_marginStart="59dp"
-            android:paddingStart="20dp"
-            android:paddingTop="20dp"
+            android:layout_width="@dimen/circle_width"
+            android:layout_height="@dimen/circle_height"
+            android:layout_marginTop="@dimen/circle_maTop"
+            android:layout_marginStart="@dimen/circle_maStart"
+            android:paddingStart="@dimen/circle_paStart"
+            android:paddingTop="@dimen/circle_paTop"
             />
         <TextView
             android:id="@+id/mid_text"

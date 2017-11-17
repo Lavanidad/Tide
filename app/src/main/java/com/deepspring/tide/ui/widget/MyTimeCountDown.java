@@ -53,8 +53,8 @@ public class MyTimeCountDown extends Chronometer {
         mTimeFormat = new SimpleDateFormat(pattern);
     }
 
-    public void setOnTimeCompleteListener(OnTimeCompleteListener l) {
-        mListener = l;
+    public void setOnTimeCompleteListener(OnTimeCompleteListener listener) {
+        this.mListener = listener;
     }
 
     OnChronometerTickListener listener = new OnChronometerTickListener() {
@@ -84,7 +84,4 @@ public class MyTimeCountDown extends Chronometer {
         this.setText(mTimeFormat.format(new Date(mNextTime * 1000)));
     }
 
-    interface OnTimeCompleteListener {
-        void onTimeComplete();
-    }
 }

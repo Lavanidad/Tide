@@ -1,5 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- 5.7 1440*2560 -->
     <dimen name="toolbar1">16.0dp</dimen>
     <dimen name="toolbar2">15.0dp</dimen>
+
+    <dimen name="circle_height">300dp</dimen>
+    <dimen name="circle_width">300dp</dimen>
+    <dimen name="circle_maTop">110dp</dimen>
+    <dimen name="circle_maStart">59dp</dimen>
+    <dimen name="circle_paTop">20dp</dimen>
+    <dimen name="circle_paStart">20dp</dimen>
+
+    <dimen name="text_text">52sp</dimen>
+    <dimen name="text_maTop">110dp</dimen>
+    <dimen name="text_maStart">150dp</dimen>
+
+    <dimen name="num_maTop">167dp</dimen>
+    <dimen name="num_maStart">170dp</dimen>
+
+    <dimen name="time_width">100dp</dimen>
+    <dimen name="time_text">40sp</dimen>
+    <dimen name="time_maTop">220dp</dimen>
+    <dimen name="time_maStart">150dp</dimen>
+
+    <dimen name="button_text">20sp</dimen>
+    <dimen name="bt_maTop">520dp</dimen>
+    <dimen name="bt_width">100dp</dimen>
+    <dimen name="bt_height">55dp</dimen>
+
+    <dimen name="bt_conT_maStart">80dp</dimen>
+    <dimen name="bt_givU_maStart">30dp</dimen>
+
+    <dimen name="foot_text_size">17.8sp</dimen>
+    <dimen name="foot_text_maTop">608.5dp</dimen>
+    <dimen name="foot_text_height">37.0dp</dimen>
+
+
 </resources>
