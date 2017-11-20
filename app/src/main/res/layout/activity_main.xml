@@ -31,9 +31,9 @@
             android:id="@+id/mid_text"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="52sp"
-            android:layout_marginTop="220dp"
-            android:layout_marginStart="150dp"
+            android:textSize="@dimen/text_text"
+            android:layout_marginTop="@dimen/text_maTop"
+            android:layout_marginStart="@dimen/text_maStart"
             android:text="欢迎"
             />
 

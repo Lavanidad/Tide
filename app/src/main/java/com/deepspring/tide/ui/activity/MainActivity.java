@@ -96,7 +96,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
             "35","45","50","55","60"};
     private int progress;
     private float countTime;
-    private int is_SELECTED = 0;//0没点击 1点击
     private float t1;
     private float t2;
     private boolean isPause = false;
@@ -167,7 +166,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                     mNumPick.setVisibility(View.VISIBLE);
             }
         });
-        Log.e("this1","test");
         mMusicService = new MusicService();
         bindServiceConnection();
         //TODO:OOM TEST
@@ -175,33 +173,26 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         Log.d("TAG", "Max memory is " + maxMemory + "KB");
     }
 
-    private int x=0;
     private void initNumberPicker() {
         mNumPick.setDisplayedValues(times);
         mNumPick.setDescendantFocusability(DatePicker.FOCUS_BLOCK_DESCENDANTS);//中间不可点击
         mNumPick.setMaxValue(times.length-1);
         mNumPick.setWrapSelectorWheel(false);
-        mTimer.initTime(300);//TODO
+        mTimer.initTime(300);
         t1 = 300/100;
         mNumPick.setOnValueChangedListener(new NumberPicker.OnValueChangeListener() {
             @Override
             public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-                Log.d("old",oldVal+"--new"+newVal);
                 mNumPick.setValue(newVal);
                 new Handler().postDelayed(new Runnable() {
                     @Override
                     public void run() {
                         mMidText.setVisibility(View.VISIBLE);
                         mNumPick.setVisibility(View.GONE);
-                        is_SELECTED = 0;
-                        int x =1;
-                        Log.e("x1",""+x);
                         mBtPlay.setClickable(true);
                     }
                 },1500);
-                is_SELECTED = 0;
                 mBtPlay.setClickable(false);
-                Log.e("x",""+x+"---"+is_SELECTED);
                 countTime = Integer.parseInt(times[newVal]);
                 t1 = ((60*countTime)/100);
                 t2 = 60*countTime;
@@ -321,7 +312,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
     public void onViewClicked(View view) {
         switch (view.getId()) {
             case R.id.bt_play:
-                Log.e("xplay",""+x+"---"+is_SELECTED);
 //                mAnimation = AnimationUtils.loadAnimation(this,R.anim.play_bt);
 //                mBtPlay.startAnimation(mAnimation);
                 NoticePlay();
@@ -346,7 +336,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 break;
             case R.id.bt_pause:
                 NoticePause();
-                Log.e("xpa",""+x+"---"+is_SELECTED);
                 //mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
                 //mBtPause.startAnimation(mAnimation);
                 mMusicService.pause();
@@ -366,7 +355,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 }
                 break;
             case R.id.bt_continute:
-                Log.e("xc",""+x+"---"+is_SELECTED);
                 NoticePlay();
 //                mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_left);
 //                mBtContinute.startAnimation(mAnimation);
@@ -390,8 +378,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 }
                 break;
             case R.id.bt_giveup:
-
-                Log.e("xg",""+x+"---"+is_SELECTED);
                 NoticeCancel();
 //                mAnimation = AnimationUtils.loadAnimation(this,R.anim.pause_right);
 //                mBtGiveup.startAnimation(mAnimation);
@@ -407,7 +393,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                 mMidText.setVisibility(View.VISIBLE);
                 mTimer.stop();
                 mTimer.initTime(300);
-                is_SELECTED = 0;
                 t1 = 3;
                 break;
         }

@@ -12,7 +12,7 @@
     <dimen name="circle_paStart">20dp</dimen>
 
     <dimen name="text_text">52sp</dimen>
-    <dimen name="text_maTop">110dp</dimen>
+    <dimen name="text_maTop">220dp</dimen>
     <dimen name="text_maStart">150dp</dimen>
 
     <dimen name="num_maTop">167dp</dimen>
