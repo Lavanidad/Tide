@@ -50,8 +50,6 @@ import butterknife.OnClick;
 
 
 /**
- * todo-list:优先级1：自定义circle
- * todo-list:优先级2：通知的倒计时逻辑
  * todo-list:优先级3：大图片OOM && 按钮动画
  * todo-list:BUG：服务生命周期的问题 描述：当AC销毁后，服务继续运行
  */
@@ -102,7 +100,6 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
 
     private NotificationCompat.Builder builder = new NotificationCompat.Builder(this);
 
-    //progressbar
     private Handler handler = new Handler(){
         @Override
         public void handleMessage(Message msg) {
@@ -191,7 +188,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
                         mNumPick.setVisibility(View.GONE);
                         mBtPlay.setClickable(true);
                     }
-                },1500);
+                },1350);
                 mBtPlay.setClickable(false);
                 countTime = Integer.parseInt(times[newVal]);
                 t1 = ((60*countTime)/100);

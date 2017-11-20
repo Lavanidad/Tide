@@ -25,6 +25,7 @@
 
     <dimen name="button_text">20sp</dimen>
     <dimen name="bt_maTop">520dp</dimen>
+    <dimen name="bt_play_width">150dp</dimen>
     <dimen name="bt_width">100dp</dimen>
     <dimen name="bt_height">55dp</dimen>
 

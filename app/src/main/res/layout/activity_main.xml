@@ -41,19 +41,19 @@
             android:id="@+id/num"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="167.0dp"
-            android:layout_marginStart="170dp"
+            android:layout_marginTop="@dimen/num_maTop"
+            android:layout_marginStart="@dimen/num_maStart"
             android:visibility="gone">
         </com.deepspring.tide.ui.widget.MyNumberPicker>
 
         <com.deepspring.tide.ui.widget.MyTimeCountDown
             android:id="@+id/timer"
-            android:layout_width="100dp"
+            android:layout_width="@dimen/time_width"
             android:layout_height="wrap_content"
-            android:textSize="40sp"
+            android:textSize="@dimen/time_text"
             android:gravity="center"
-            android:layout_marginTop="220dp"
-            android:layout_marginStart="150dp"
+            android:layout_marginTop="@dimen/time_maTop"
+            android:layout_marginStart="@dimen/time_maStart"
             android:textColor="#CCd3d6da"
             android:visibility="gone" />
 
@@ -68,22 +68,22 @@
         <Button
             android:id="@+id/bt_play"
             android:background="@drawable/shape_play"
-            android:textSize="20sp"
+            android:textSize="@dimen/button_text"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="520dp"
-            android:layout_width="150dp"
-            android:layout_height="55dp"
+            android:layout_marginTop="@dimen/bt_maTop"
+            android:layout_width="@dimen/bt_play_width"
+            android:layout_height="@dimen/bt_height"
             android:text="开始专注"
             android:soundEffectsEnabled="false"/>
 
         <Button
             android:id="@+id/bt_pause"
             android:background="@drawable/shape_pause"
-            android:textSize="20sp"
+            android:textSize="@dimen/button_text"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="520dp"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
+            android:layout_marginTop="@dimen/bt_maTop"
+            android:layout_width="@dimen/bt_width"
+            android:layout_height="@dimen/bt_height"
             android:text="暂停"
             android:visibility="gone"
             android:soundEffectsEnabled="false"/>
@@ -96,11 +96,11 @@
         <Button
             android:id="@+id/bt_continute"
             android:background="@drawable/shape_continute"
-            android:textSize="20sp"
-            android:layout_marginTop="520dp"
-            android:layout_marginLeft="80dp"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
+            android:textSize="@dimen/button_text"
+            android:layout_marginTop="@dimen/bt_maTop"
+            android:layout_marginStart="@dimen/bt_conT_maStart"
+            android:layout_width="@dimen/bt_width"
+            android:layout_height="@dimen/bt_height"
             android:text="继续"
             android:visibility="gone"
             android:soundEffectsEnabled="false"/>
@@ -110,10 +110,10 @@
             android:background="@drawable/shape_pause"
             android:textSize="20sp"
             android:textColor="@android:color/white"
-            android:layout_marginTop="520dp"
-            android:layout_marginLeft="30dp"
-            android:layout_width="100dp"
-            android:layout_height="55dp"
+            android:layout_marginTop="@dimen/bt_maTop"
+            android:layout_marginStart="@dimen/bt_conT_maStart"
+            android:layout_width="@dimen/bt_width"
+            android:layout_height="@dimen/bt_height"
             android:text="放弃"
             android:visibility="gone"
             android:soundEffectsEnabled="false"/>
@@ -126,11 +126,11 @@
         <TextView
             android:id="@+id/daily_text"
             android:layout_width="wrap_content"
-            android:layout_height="37.0dp"
+            android:layout_height="@dimen/foot_text_height"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="608.5dp"
+            android:layout_marginTop="@dimen/foot_text_maTop"
             android:textColor="#A5FFFFFF"
-            android:textSize="17.8dp"
+            android:textSize="@dimen/foot_text_size"
             android:text=""/>
     </LinearLayout>
 
