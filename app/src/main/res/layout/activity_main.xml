@@ -35,6 +35,7 @@
             android:layout_marginTop="@dimen/text_maTop"
             android:layout_marginStart="@dimen/text_maStart"
             android:text="欢迎"
+            android:visibility="visible"
             />
 
         <com.deepspring.tide.ui.widget.MyNumberPicker
@@ -68,7 +69,7 @@
         <Button
             android:id="@+id/bt_play"
             android:background="@drawable/shape_play"
-            android:textSize="@dimen/button_text"
+            android:textSize="18sp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/bt_maTop"
             android:layout_width="@dimen/bt_play_width"
@@ -111,7 +112,7 @@
             android:textSize="20sp"
             android:textColor="@android:color/white"
             android:layout_marginTop="@dimen/bt_maTop"
-            android:layout_marginStart="@dimen/bt_conT_maStart"
+            android:layout_marginStart="@dimen/bt_givU_maStart"
             android:layout_width="@dimen/bt_width"
             android:layout_height="@dimen/bt_height"
             android:text="放弃"
@@ -126,7 +127,7 @@
         <TextView
             android:id="@+id/daily_text"
             android:layout_width="wrap_content"
-            android:layout_height="@dimen/foot_text_height"
+            android:layout_height="@dimen/foot_text_size"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/foot_text_maTop"
             android:textColor="#A5FFFFFF"
