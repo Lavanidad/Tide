@@ -284,6 +284,7 @@ public class MainActivity extends BaseActivity implements ViewPager.OnPageChange
         mMidTextArrays = this.getResources().getStringArray(R.array.midText);
         switch (mPosition){
             case 0:
+                mMidText.setText(mMidTextArrays[0]);
                 break;
             case 1:
                 mMidText.setText(mMidTextArrays[1]);
