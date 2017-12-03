@@ -151,7 +151,7 @@
                             android:layout_width="20.0dp"
                             android:layout_height="20.0dp"
                             android:background="@android:color/transparent"
-                            android:src="@drawable/development"
+                            android:src="@drawable/developer"
                             />
                         <LinearLayout
                             android:layout_marginLeft="15.0dp"
